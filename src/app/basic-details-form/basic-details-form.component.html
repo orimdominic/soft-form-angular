@@ -4,9 +4,7 @@
   <div [formGroup]="userBasicForm">
     <div>
       <!-- Names not be less that 2 characters, must include a space and then a second name -->
-      <label for="fullName"
-        >Full name</label
-      >
+      <label for="fullName">Full name</label>
       <input
         id="fullName"
         autocomplete="given-name"
@@ -47,10 +45,7 @@
         <!-- Minimum of 6 characters -->
         <!-- Must contain at least one uppercase character, one number, one special character -->
         <!-- Confirm password must match password field -->
-        <label for="password"
-          >Password
-          </label
-        >
+        <label for="password">Password </label>
         <input id="password" formControlName="password" type="password" />
         <span></span>
       </div>

@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicDetailsFormComponent } from './basic-details-form/basic-details-form.component';
 import { CardDetailsFormComponent } from './card-details-form/card-details-form.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BasicDetailsFormComponent,
     CardDetailsFormComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [],
