@@ -8,6 +8,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserStoreService } from '../user-store.service';
+import { debounceTime } from 'rxjs/operators';
 
 function generateCharSet(charCodeStart: number, charCodeEnd: number) {
   return Array(charCodeEnd - charCodeStart + 1)
@@ -18,9 +20,9 @@ function generateCharSet(charCodeStart: number, charCodeEnd: number) {
 function containsSpaceChar(control: AbstractControl): ValidationErrors | null {
   const error = {
     containsSpaceChar: true,
-    msg: 'Only one name provided.',
+    // msg: 'Only one name provided.',
   };
-  return control.value.includes(' ') ? null : error;
+  return control.value.includes(' ') ? null : { containsSpaceChar: true };
 }
 
 function containsMoreThanOneCharNames(
@@ -28,7 +30,6 @@ function containsMoreThanOneCharNames(
 ): ValidationErrors | null {
   const error = {
     containsMoreThanOneCharNames: true,
-    msg: 'Names should have more than two characters',
   };
   const names = control.value.split(' ');
   if (names.length > 1) {
@@ -41,7 +42,7 @@ function startsWith(...prefixes: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const error = {
       startsWith: true,
-      msg: `It must begin with either of ${prefixes.join(', ')}`,
+      // msg: `It must begin with either of ${prefixes.join(', ')}`,
     };
     const firstThreeChars = control.value.substring(0, 3);
     return prefixes.includes(firstThreeChars) ? null : error;
@@ -52,7 +53,7 @@ function containsSet(setName: string, set: string[]): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const error = {
       containsSet: true,
-      msg: `Password must contain at least one ${setName}`,
+      // msg: `Password must contain at least one ${setName}`,
     };
     const x = control.value
       .split('')
@@ -71,7 +72,6 @@ function comparePasswords(control: AbstractControl): ValidationErrors | null {
   }
   return {
     passwordMatch: true,
-    msg: 'Passwords do not match',
   };
 }
 
@@ -81,10 +81,26 @@ function comparePasswords(control: AbstractControl): ValidationErrors | null {
   styleUrls: ['./basic-details-form.component.scss'],
 })
 export class BasicDetailsFormComponent implements OnInit {
-  userBasicForm: FormGroup;
+  basicDetailsForm: FormGroup;
+  // fullNameMsg: string[] = [];
+  // emailMsg: string[] = [];
+  // phoneMsg: string[] = [];
+  // passwordGroupMsg: string[] = [];
+  // passwordMsg: string[] = [];
+  // feedbackMessages :{[key: string]: string} = {
+  //   containsSpaceChar: 'Only one name provided.',
+  //   containsMoreThanOneCharNames: 'Names should have more than one character',
+  //   startsWith: 'Must start with ...',
+  //   passwordMatch: 'Passwords do not match',
+  //   required: 'This field is required'
+  // };
 
-  constructor(private fb: FormBuilder, private router: Router) {
-    this.userBasicForm = this.fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userStore: UserStoreService
+  ) {
+    this.basicDetailsForm = this.fb.group({
       fullName: [
         '',
         [Validators.required, containsSpaceChar, containsMoreThanOneCharNames],
@@ -107,6 +123,7 @@ export class BasicDetailsFormComponent implements OnInit {
             [
               Validators.required,
               Validators.minLength(6),
+              comparePasswords,
               containsSet('uppercase', generateCharSet(65, 90)),
               containsSet('lowercase', generateCharSet(97, 122)),
               containsSet(
@@ -124,12 +141,31 @@ export class BasicDetailsFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const fullNameCtrl = this.basicDetailsForm.get('fullName');
+    fullNameCtrl?.valueChanges.pipe(debounceTime(1500)).subscribe((val) => {
+      if (fullNameCtrl.invalid) {
+        fullNameCtrl.setErrors({ invalid: true });
+      }
+    });
+  }
+
+  // setFullNameMsg(c: AbstractControl) {
+  //   this.fullNameMsg=[]
+  //   if((c.touched || c.dirty) && c.errors){
+  //     this.fullNameMsg = Object.keys(c.errors).map(key => this.feedbackMessages[key])
+  //   }
+  // }
 
   onNext() {
-    debugger;
-    console.log('next');
-
+    this.userStore.setUser(this.basicDetailsForm.value);
     this.router.navigate(['/card-details-form']);
+  }
+
+  preventNonNumeric(keyPressEv: KeyboardEvent) {
+    const isNumberKey = Number.isInteger(Number.parseInt(keyPressEv.key, 10));
+    if (!isNumberKey) {
+      keyPressEv.preventDefault();
+    }
   }
 }

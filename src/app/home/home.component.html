@@ -24,15 +24,15 @@
       class="flex flex-col items-center justify-center mt-6 space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4"
     >
       <button
-      [routerLink]="['/basic-details-form']"
-  role="link"
+        [routerLink]="['/basic-details-form']"
+        role="link"
         type="button"
         class="px-4 py-2 text-base font-semibold text-center text-blue-600 transition duration-200 ease-in bg-white rounded-lg shadow-md sm:text-lg lg:text-2xl focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
         View
       </button>
       <button
-      (click)="specificationsContainer.scrollIntoView({behavior: 'smooth'})"
+        (click)="specificationsContainer.scrollIntoView({ behavior: 'smooth' })"
         type="button"
         class="px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-500 rounded-lg shadow-md sm:text-lg lg:text-2xl hover:bg-blue-600 focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
       >
@@ -61,7 +61,10 @@
               {{ spec.title }}
             </span>
             <ol class="text-sm text-gray-500">
-              <li *ngFor="let desc of spec.descs; index as index" class="smt:text-lg">
+              <li
+                *ngFor="let desc of spec.descs; index as index"
+                class="smt:text-lg"
+              >
                 {{ index + 1 }}. {{ desc }}
               </li>
             </ol>
@@ -72,10 +75,10 @@
   </div>
 </div>
 
-<div class="flex items-center justify-center ">
+<div class="flex items-center justify-center">
   <button
-  [routerLink]="['/basic-details-form']"
-  role="link"
+    [routerLink]="['/basic-details-form']"
+    role="link"
     type="button"
     class="px-8 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-blue-500 rounded-lg shadow-md hover:bg-blue-600 sm:text-lg lg:text-2xl focus:ring-blue-500 focus:ring-offset-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
   >
@@ -85,27 +88,10 @@
 
 <div class="block p-4 sm:px-12">
   <h2 class="py-2 text-3xl font-extrabold text-gray-900 sm:text-5xl">
-    other features
+    planned features
   </h2>
   <div class="text-gray-900">
     <ul class="grid py-6 -m-2 phone:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-      <li
-        class="m-2 text-left transition ease-in-out transform border border-gray-700 rounded-sm duration-300 hover:-translate-y-0.5"
-      >
-        <div class="flex items-center h-full p-4">
-          <section class="flex-grow">
-            <h3
-              class="inline-block text-lg font-medium text-gray-900 lowercase"
-            >
-              route guards
-            </h3>
-            <p class="text-sm text-gray-500">
-              To prevent routing to the card details form until basic details
-              form is valid
-            </p>
-          </section>
-        </div>
-      </li>
       <li
         class="m-2 text-left transition ease-in-out transform border border-gray-700 rounded-sm duration-300 hover:-translate-y-0.5"
       >
@@ -118,34 +104,40 @@
             </h3>
             <p class="text-sm text-gray-500">
               Form controls give feedback to user on what they may be doing
-              wrong and how to correct it
+              wrong and how to correct it, including toggling to view password
             </p>
           </section>
         </div>
       </li>
-      <!-- <li
-      class="m-2 text-left transition ease-in-out transform border border-gray-700 rounded-sm duration-300 hover:-translate-y-0.5"
-    >
-      <div class="flex items-center h-full p-4">
-        <section class="flex-grow">
-          <h3
-            class="inline-block text-lg font-medium text-gray-900 lowercase"
-          >
-            tests
-          </h3>
-          <p class="text-sm text-gray-500">
-
-          </p>
-        </section>
-      </div>
-    </li> -->
+      <li
+        class="m-2 text-left transition ease-in-out transform border border-gray-700 rounded-sm duration-300 hover:-translate-y-0.5"
+      >
+        <div class="flex items-center h-full p-4">
+          <section class="flex-grow">
+            <h3
+              class="inline-block text-lg font-medium text-gray-900 lowercase"
+            >
+              tests
+            </h3>
+            <p class="text-sm text-gray-500"></p>
+          </section>
+        </div>
+      </li>
     </ul>
   </div>
 </div>
-<div class="block px-4 pt-0 pb-8 text-center sm:px-12" >
+<div class="block px-4 pt-0 pb-8 text-center sm:px-12">
   <div class="text-xl text-gray-900 sm:text-2xl">
-    <p>I built this project in ReactJS too. </p>
-    <p>It's source code is at <a href="https://github.com/sudo-kaizen/soft-form" class="text-blue-600 hover:underline">soft-form</a> on my Github</p>
+    <p>I built this project in ReactJS too.</p>
+    <p>
+      It's source code is at
+      <a
+        href="https://github.com/sudo-kaizen/soft-form"
+        class="text-blue-600 hover:underline"
+        >soft-form</a
+      >
+      on my Github
+    </p>
   </div>
 </div>
 <footer
@@ -203,12 +195,12 @@
       <div
         class="flex flex-col items-center justify-center flex-1 mt-7 md:mt-0 md:items-start md:pl-5"
       >
-        <span class=""> © 2021 </span>
+        <span class=""> © {{ currentYear }} </span>
         <span class="mt-7 md:mt-1">
           Created by
           <a
             class="underline hover:text-primary-gray-20"
-            href="https://www.linkedin.com/in/crabiller/"
+            href="https://www.linkedin.com/in/orimdominicadah/"
           >
             Orim Dominic
           </a>

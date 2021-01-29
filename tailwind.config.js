@@ -15,6 +15,9 @@ module.exports = {
         phone: { max: '425px' },
       },
     },
+    fontFamily: {
+      sans: ['Quicksand', 'sans-serif'],
+    },
   },
   variants: {
     extend: {

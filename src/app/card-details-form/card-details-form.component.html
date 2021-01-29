@@ -1,50 +1,114 @@
-<form novalidate [formGroup]="cardDetailsForm">
-  <div>
-    <!-- Must match the XXXX XXXX XXXX XXXX format. -->
-    <!-- As you type, it automatically adds space inbetween each 4 sets of numbers -->
-    <label for="cardNumber">Card number</label>
-    <input
-      id="cardNumber"
-      formGroupName="cardNumber"
-      type="text"
-      placeholder="XXXX XXXX XXXX XXXX"
-      (input)="onCardNumberInput($event)"
-      (keypress)="preventNonNumeric($event)"
-      minlength="19"
-      maxlength="19"
-    />
-  </div>
+<div class="overflow-hidden bg-gray-600">
+  <div
+    class="px-10 py-4 my-12 bg-white rounded sm:max-w-md sm:w-full sm:mx-auto"
+  >
+    <div class="relative mt-4">
+      <div class="absolute inset-0 flex items-center">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+      <div class="relative flex justify-center text-xl leading-5">
+        <h1 class="px-2 font-semibold text-gray-500 bg-white">Card details</h1>
+      </div>
+    </div>
+    <div class="mt-6">
+      <form class="w-full space-y-3" [formGroup]="cardDetailsForm">
+        <div class="w-full">
+          <!-- Card number -->
+          <div>
+            <label
+              for="cardNumber"
+              class="block mb-1 text-sm font-semibold text-gray-500"
+              >Card number</label
+            >
+            <input
+              id="cardNumber"
+              formControlName="cardNumber"
+              type="text"
+              placeholder="XXXX XXXX XXXX XXXX"
+              (input)="onCardNumberInput($event)"
+              (keypress)="preventNonNumeric($event)"
+              minlength="19"
+              maxLength="19"
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+              placeholder="XXXX XXXX XXXX XXXX"
+            />
+            <div>
+              <span class="inline-block text-sm text-red-500"
+                >Errors go here</span
+              >
+            </div>
+          </div>
+        </div>
 
-  <div>
-    <!-- Must match MM/YY format -->
-    <!-- As you type 0123, it should fill the input as 01/23 -->
-    <label for="cardExpirDate">Card expiry date</label>
-    <input
-      id="cardExpirDate"
-      formGroupName="cardExpirDate"
-      type="text"
-      minlength="5"
-      maxlength="5"
-      placeholder="MM/YY"
-      (input)="onCardExpirDateInput($event)"
-      (keypress)="preventNonNumeric($event)"
-    />
-  </div>
+        <div class="w-full">
+          <!-- Full name -->
+          <!-- Names not be less that 2 characters, must include a space and then a second name  -->
+          <div>
+            <label
+              for="cardExpirDate"
+              class="block mb-1 text-sm font-semibold text-gray-500"
+              >Card expiry date</label
+            >
+            <input
+              id="cardExpirDate"
+              formGroupName="cardExpirDate"
+              type="text"
+              minlength="5"
+              maxlength="5"
+              placeholder="MM/YY"
+              (input)="onCardExpirDateInput($event)"
+              (keypress)="preventNonNumeric($event)"
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+              placeholder="MM/YY"
+            />
+            <div>
+              <span class="inline-block text-sm text-red-500"
+                >Errors go here</span
+              >
+            </div>
+          </div>
+        </div>
 
-  <div>
-    <!-- Should be 4 characters long -->
-    <!-- Only accepts numbers -->
-    <!-- Should be a password field -->
-    <label for="cardPin">Card pin</label>
-    <input
-      id="cardPin"
-      formGroupName="cardPin"
-      type="password"
-      minlength="4"
-      maxlength="4"
-      placeholder="XXXX"
-      (keypress)="preventNonNumeric($event)"
-    />
+        <div class="w-full">
+          <!-- Email -->
+          <!-- Must be a valid email -->
+          <div>
+            <label
+              for="cardPin"
+              class="block mb-1 text-sm font-semibold text-gray-500"
+              >Card pin</label
+            >
+            <input
+              id="cardPin"
+              formGroupName="cardPin"
+              type="password"
+              minlength="4"
+              maxlength="4"
+              placeholder="XXXX"
+              (keypress)="preventNonNumeric($event)"
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
+          <div>
+            <span class="inline-block text-sm text-red-500"
+              >Errors go here</span
+            >
+          </div>
+        </div>
+
+        <div class="py-4">
+          <span class="block w-full rounded shadow-sm">
+            <button
+              [disabled]="cardDetailsForm.invalid"
+              (click)="submit()"
+              type="button"
+              class="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-indigo-600 rounded shadow-md disabled:cursor-not-allowed disabled:opacity-50 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2"
+            >
+              Submit
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
   </div>
-  <button>Back</button> <button>Submit</button>
-</form>
+</div>
