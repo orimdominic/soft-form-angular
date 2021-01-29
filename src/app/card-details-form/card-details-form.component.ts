@@ -7,13 +7,17 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 
 function isValidDate(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const ctrlMonthVal = control.value.substring(0, 2);
     const ctrlMonth = Number.parseInt(ctrlMonthVal, 10);
     if (ctrlMonth < 1 || ctrlMonth > 12) {
-      return { isValidDate: true, msg: 'Invalid month' };
+      return {
+        isValidDate: true,
+        // msg: 'Invalid month'
+      };
     }
     const ctrlYearVal = control.value.substring(3);
     const ctrlYear = Number.parseInt(ctrlYearVal, 10);
@@ -21,7 +25,10 @@ function isValidDate(): ValidatorFn {
       new Date().getFullYear().toString(10).substr(2)
     );
     if (ctrlYear < twoDigitYear) {
-      return { isValidDate: true, msg: 'Is the card expired?' };
+      return {
+        isValidDate: true,
+        // msg: 'Is the card expired?'
+      };
     }
     return null;
   };
@@ -34,7 +41,7 @@ function isValidDate(): ValidatorFn {
 })
 export class CardDetailsFormComponent implements OnInit {
   cardDetailsForm: FormGroup;
-  constructor() {
+  constructor(private router: Router) {
     this.cardDetailsForm = new FormGroup({
       cardNumber: new FormControl('', [
         Validators.required,
@@ -93,5 +100,11 @@ export class CardDetailsFormComponent implements OnInit {
     }
   }
 
-  submit() {}
+  submit() {
+    new Promise(() => {
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1500);
+    });
+  }
 }

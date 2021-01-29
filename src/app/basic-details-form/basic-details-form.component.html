@@ -1,7 +1,5 @@
 <div class="py-4 bg-gray-600">
-  <div
-    class="max-w-sm p-4 mx-auto my-10 bg-white rounded sm:px-10 sm:max-w-md"
-  >
+  <div class="max-w-sm p-4 mx-auto my-10 bg-white rounded sm:px-10 sm:max-w-md">
     <div class="relative mt-4">
       <div class="absolute inset-0 flex items-center">
         <div class="w-full border-t border-gray-300"></div>
@@ -26,11 +24,22 @@
               type="text"
               formControlName="fullName"
               id="fullName"
-              [class]="basicDetailsForm.controls.fullName?.errors?.invalid && basicDetailsForm.controls.fullName?.dirty  ?  'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'"
-              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none "
+              [class]="
+                basicDetailsForm.controls.fullName?.errors?.invalid &&
+                basicDetailsForm.controls.fullName?.dirty
+                  ? 'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                  : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+              "
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none"
               placeholder="John Doe"
             />
-            <span *ngIf="basicDetailsForm.controls.fullName?.errors?.invalid && basicDetailsForm.controls.fullName?.dirty" class="inline-block text-sm text-gray-600">
+            <span
+              *ngIf="
+                basicDetailsForm.controls.fullName?.errors?.invalid &&
+                basicDetailsForm.controls.fullName?.dirty
+              "
+              class="inline-block text-sm text-gray-600"
+            >
               Please input two names, each with more than 1 character
             </span>
             <!-- <ul *ngIf="fullNameMsg" >
@@ -39,7 +48,6 @@
                 msg
               }}</span></li>
             </ul> -->
-
           </div>
         </div>
 
@@ -59,10 +67,22 @@
               inputmode="email"
               formControlName="email"
               placeholder="john@doe.com"
-              [class]="basicDetailsForm.controls.email?.invalid && basicDetailsForm.controls.email?.dirty  ?  'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'"
-              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none "            />
+              [class]="
+                basicDetailsForm.controls.email?.invalid &&
+                basicDetailsForm.controls.email?.dirty
+                  ? 'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                  : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+              "
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none"
+            />
           </div>
-          <span *ngIf="basicDetailsForm.controls.email.invalid && basicDetailsForm.controls.email?.dirty" class="inline-block text-sm text-gray-600">
+          <span
+            *ngIf="
+              basicDetailsForm.controls.email.invalid &&
+              basicDetailsForm.controls.email?.dirty
+            "
+            class="inline-block text-sm text-gray-600"
+          >
             A valid email address has the form: abc@xyz.com
           </span>
           <!-- <div>
@@ -91,11 +111,22 @@
               type="tel"
               inputmode="tel"
               formControlName="phone"
-              [class]="basicDetailsForm.controls.phone?.invalid && basicDetailsForm.controls.phone?.dirty  ?  'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'"
-              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none "
+              [class]="
+                basicDetailsForm.controls.phone?.invalid &&
+                basicDetailsForm.controls.phone?.dirty
+                  ? 'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                  : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+              "
+              class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none"
             />
           </div>
-          <span *ngIf="basicDetailsForm.controls.phone.invalid && basicDetailsForm.controls.phone?.dirty" class="inline-block text-sm text-gray-600">
+          <span
+            *ngIf="
+              basicDetailsForm.controls.phone.invalid &&
+              basicDetailsForm.controls.phone?.dirty
+            "
+            class="inline-block text-sm text-gray-600"
+          >
             Number must be Nigerian and not start with +234
           </span>
           <!-- <div>
@@ -121,12 +152,24 @@
                 minlength="6"
                 type="password"
                 formControlName="password"
-                [class]="basicDetailsForm.get('passwordGroup.password')?.invalid && basicDetailsForm.get('passwordGroup.password')?.dirty  ?  'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'"
-                class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none "
+                [class]="
+                  basicDetailsForm.get('passwordGroup.password')?.invalid &&
+                  basicDetailsForm.get('passwordGroup.password')?.dirty
+                    ? 'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                    : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+                "
+                class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none"
               />
             </div>
-            <span *ngIf="basicDetailsForm.get('passwordGroup.password')?.invalid && basicDetailsForm.get('passwordGroup.password')?.dirty  " class="inline-block text-sm text-gray-600">
-              A valid password has more than 6 characters and has at least an uppercase, a lowercase, a number and a symbol
+            <span
+              *ngIf="
+                basicDetailsForm.get('passwordGroup.password')?.invalid &&
+                basicDetailsForm.get('passwordGroup.password')?.dirty
+              "
+              class="inline-block text-sm text-gray-600"
+            >
+              A valid password has more than 6 characters and has at least an
+              uppercase, a lowercase, a number and a symbol
             </span>
             <!-- <div>
               <span class="inline-block text-sm text-red-500"
@@ -149,10 +192,22 @@
                 minlength="6"
                 type="password"
                 formControlName="confirmPassword"
-                [class]="basicDetailsForm.get('passwordGroup')?.invalid &&basicDetailsForm.get('passwordGroup.confirmPassword')?.dirty   ?  'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200' : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'"
-                class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none "                />
+                [class]="
+                  basicDetailsForm.get('passwordGroup')?.invalid &&
+                  basicDetailsForm.get('passwordGroup.confirmPassword')?.dirty
+                    ? 'border-red-300  focus:border-red-500 focus:ring-2 focus:ring-red-200'
+                    : 'focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200'
+                "
+                class="w-full px-3 py-1 text-base leading-8 text-gray-700 transition-colors duration-200 ease-in-out bg-white border border-gray-300 rounded outline-none"
+              />
             </div>
-            <span *ngIf="basicDetailsForm.get('passwordGroup')?.invalid && basicDetailsForm.get('passwordGroup.confirmPassword')?.dirty " class="inline-block text-sm text-gray-600">
+            <span
+              *ngIf="
+                basicDetailsForm.get('passwordGroup')?.invalid &&
+                basicDetailsForm.get('passwordGroup.confirmPassword')?.dirty
+              "
+              class="inline-block text-sm text-gray-600"
+            >
               Looks like passwords the don't match yet
             </span>
             <!-- <div>

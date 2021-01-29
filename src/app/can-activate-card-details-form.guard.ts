@@ -23,8 +23,8 @@ export class CanActivateCardDetailsFormGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (this.userServ.getUser() === null) {
+      return true;
       this.router.navigate(['/basic-details-form']);
-      return false;
     }
     return true;
   }
