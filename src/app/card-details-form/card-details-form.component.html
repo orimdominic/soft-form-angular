@@ -1,0 +1,50 @@
+<form novalidate [formGroup]="cardDetailsForm">
+  <div>
+    <!-- Must match the XXXX XXXX XXXX XXXX format. -->
+    <!-- As you type, it automatically adds space inbetween each 4 sets of numbers -->
+    <label for="cardNumber">Card number</label>
+    <input
+      id="cardNumber"
+      formGroupName="cardNumber"
+      type="text"
+      placeholder="XXXX XXXX XXXX XXXX"
+      (input)="onCardNumberInput($event)"
+      (keypress)="preventNonNumeric($event)"
+      minlength="19"
+      maxlength="19"
+    />
+  </div>
+
+  <div>
+    <!-- Must match MM/YY format -->
+    <!-- As you type 0123, it should fill the input as 01/23 -->
+    <label for="cardExpirDate">Card expiry date</label>
+    <input
+      id="cardExpirDate"
+      formGroupName="cardExpirDate"
+      type="text"
+      minlength="5"
+      maxlength="5"
+      placeholder="MM/YY"
+      (input)="onCardExpirDateInput($event)"
+      (keypress)="preventNonNumeric($event)"
+    />
+  </div>
+
+  <div>
+    <!-- Should be 4 characters long -->
+    <!-- Only accepts numbers -->
+    <!-- Should be a password field -->
+    <label for="cardPin">Card pin</label>
+    <input
+      id="cardPin"
+      formGroupName="cardPin"
+      type="password"
+      minlength="4"
+      maxlength="4"
+      placeholder="XXXX"
+      (keypress)="preventNonNumeric($event)"
+    />
+  </div>
+  <button>Back</button> <button>Submit</button>
+</form>

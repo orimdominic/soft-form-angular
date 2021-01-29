@@ -1,10 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BasicDetailsFormComponent } from './basic-details-form/basic-details-form.component';
+import { CanActivateCardDetailsFormGuard } from './can-activate-card-details-form.guard';
+import { CardDetailsFormComponent } from './card-details-form/card-details-form.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'basic-details-form', component: BasicDetailsFormComponent },
+  {
+    path: 'card-details-form',
+    component: CardDetailsFormComponent,
+    canActivate: [CanActivateCardDetailsFormGuard],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
